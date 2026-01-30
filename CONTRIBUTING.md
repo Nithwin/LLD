@@ -1,360 +1,332 @@
-# Contributing to LLD Practice Repository
+# Contributing to LLD System Design Questions
 
-Thank you for your interest in contributing! This document provides guidelines and workflows for contributing to this repository.
+Thank you for your interest in contributing to this repository. This document provides guidelines for contributing solutions, questions, and improvements.
 
-## 🌟 Ways to Contribute
+## Table of Contents
 
-### 1. Solve a Problem ✅
-Implement solutions to existing problems.
+- [Getting Started](#getting-started)
+- [Contribution Types](#contribution-types)
+- [Branch Naming Convention](#branch-naming-convention)
+- [Solution Submission Process](#solution-submission-process)
+- [Code Standards](#code-standards)
+- [Commit Message Guidelines](#commit-message-guidelines)
+- [Pull Request Process](#pull-request-process)
+- [Code Review](#code-review)
 
-### 2. Add New Problems 📝
-Propose and create new LLD problems.
+## Getting Started
 
-### 3. Improve Documentation 📚
-Enhance problem statements, add diagrams, or improve guides.
-
-### 4. Review Solutions 👀
-Help review and provide feedback on pull requests.
-
-## 🔄 Contribution Workflow
-
-### For Solving Problems
-
-#### Step 1: Fork and Clone
-```bash
-# Fork the repository on GitHub (click Fork button)
-
-# Clone your fork
-git clone https://github.com/YOUR_USERNAME/LLD.git
-cd LLD
-
-# Add upstream remote
-git remote add upstream https://github.com/ORIGINAL_OWNER/LLD.git
-```
-
-#### Step 2: Sync with Upstream
-```bash
-# Fetch latest changes
-git fetch upstream
-
-# Checkout main branch
-git checkout main
-
-# Merge upstream changes
-git merge upstream/main
-```
-
-#### Step 3: Create a Solution Branch
-```bash
-# Branch naming convention: solution/<problem-name>-<your-name>
-git checkout -b solution/parking-lot-john
-
-# Examples:
-# git checkout -b solution/toll-gate-sarah
-# git checkout -b solution/elevator-mike
-```
-
-#### Step 4: Implement Your Solution
-
-1. Navigate to the problem folder:
+1. Fork the repository to your GitHub account
+2. Clone your fork locally:
    ```bash
-   cd problems/XX-problem-name/solutions/
+   git clone https://github.com/YOUR_USERNAME/LLD.git
+   cd LLD
+   ```
+3. Add the upstream repository:
+   ```bash
+   git remote add upstream https://github.com/ORIGINAL_OWNER/LLD.git
+   ```
+4. Keep your fork synchronized:
+   ```bash
+   git fetch upstream
+   git merge upstream/main
    ```
 
-2. Create your solution file:
-   ```bash
-   # Naming convention: solution_<yourname>.cpp
-   touch solution_john.cpp
-   ```
+## Contribution Types
 
-3. Write your solution following these guidelines:
-   - **Include comments** explaining your design decisions
-   - **Follow SOLID principles**
-   - **Use appropriate design patterns**
-   - **Add class diagrams** (optional but recommended)
-   - **Include a header comment** with your approach
+### 1. Solution Submission
+Submit your implementation for any question in Java or C++.
 
-Example solution structure:
-```cpp
-/**
- * Problem: Parking Lot System
- * Author: John Doe
- * Date: 2026-01-30
- * 
- * Approach:
- * - Used Factory Pattern for vehicle creation
- * - Implemented Strategy Pattern for pricing
- * - Applied Singleton for ParkingLot manager
- * 
- * Design Patterns Used:
- * - Factory Pattern
- * - Strategy Pattern
- * - Singleton Pattern
- * 
- * Time Complexity: O(1) for parking, O(n) for finding spot
- * Space Complexity: O(n) where n is number of spots
- */
+### 2. New Question Proposal
+Propose new LLD questions with clear requirements and constraints.
 
-#include <iostream>
-// Your solution code...
-```
+### 3. Documentation Improvement
+Enhance existing documentation, fix typos, or improve clarity.
 
-#### Step 5: Test Your Solution
-```bash
-# Compile
-g++ -std=c++17 solution_john.cpp -o solution
+### 4. Bug Fixes
+Report and fix issues in existing solutions or documentation.
 
-# Run
-./solution
+## Branch Naming Convention
 
-# Test with different inputs
-```
-
-#### Step 6: Document Your Solution
-Create a `SOLUTION.md` in your solution folder (optional):
-```markdown
-# Solution Approach
-
-## Design Decisions
-- Why you chose specific patterns
-- Trade-offs you considered
-
-## Class Diagram
-[Include diagram if possible]
-
-## How to Run
-```bash
-g++ -std=c++17 solution_john.cpp -o solution
-./solution
-```
-
-## Test Cases
-- Test case 1: ...
-- Test case 2: ...
-```
-
-#### Step 7: Commit Your Changes
-```bash
-# Stage your files
-git add problems/XX-problem-name/solutions/solution_john.cpp
-
-# Commit with descriptive message
-git commit -m "Add solution for Parking Lot by John Doe
-
-- Implemented Factory and Strategy patterns
-- Added detailed comments
-- Tested with multiple scenarios"
-```
-
-#### Step 8: Push to Your Fork
-```bash
-git push origin solution/parking-lot-john
-```
-
-#### Step 9: Create Pull Request
-
-1. Go to your fork on GitHub
-2. Click "Compare & pull request"
-3. Fill in the PR template:
-   - **Title**: `Solution: [Problem Name] by [Your Name]`
-   - **Description**: Explain your approach and design decisions
-   - **Checklist**: Complete all items in the template
-
-4. Submit the PR and wait for review
-
-### For Adding New Problems
-
-#### Step 1: Create a Problem Branch
-```bash
-git checkout -b problem/new-problem-name
-
-# Example:
-# git checkout -b problem/movie-ticket-booking
-```
-
-#### Step 2: Create Problem Folder Structure
-```bash
-mkdir -p problems/XX-problem-name/solutions
-cd problems/XX-problem-name
-```
-
-#### Step 3: Create Problem README
-Create `README.md` with:
-
-```markdown
-# Problem XX: Problem Name
-
-## Difficulty: [Easy/Medium/Hard]
-
-## Problem Statement
-
-[Clear description of the problem]
-
-## Requirements
-
-### Functional Requirements
-1. Requirement 1
-2. Requirement 2
-...
-
-### Non-Functional Requirements
-1. Performance considerations
-2. Scalability needs
-...
-
-## Expected Classes/Entities
-
-Hint at the main entities:
-- Class 1: Purpose
-- Class 2: Purpose
-...
-
-## Design Patterns to Consider
-
-- Pattern 1
-- Pattern 2
-...
-
-## Example Usage
-
-```cpp
-// Example code showing expected usage
-```
-
-## Test Cases
-
-### Test Case 1:
-**Input**: ...
-**Expected Output**: ...
-
-### Test Case 2:
-**Input**: ...
-**Expected Output**: ...
-
-## Bonus Challenges (Optional)
-
-- Challenge 1
-- Challenge 2
-
-## Evaluation Criteria
-
-Your solution will be evaluated on:
-- [ ] Code organization and structure
-- [ ] Design pattern usage
-- [ ] SOLID principles adherence
-- [ ] Code readability and comments
-- [ ] Edge case handling
-```
-
-#### Step 4: Add Sample Solution (Optional)
-```bash
-# Create a reference solution
-touch sample_solution.cpp
-```
-
-#### Step 5: Update Main README
-Add your problem to the problem list table in the main `README.md`
-
-#### Step 6: Submit PR
-Follow the same PR process as solutions.
-
-## 📏 Code Standards
-
-### C++ Standards
-- Use **C++17** or later
-- Follow [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
-- Use meaningful variable and function names
-- Add comments for complex logic
-
-### File Naming
-- Solution files: `solution_<yourname>.cpp`
-- Problem folders: `XX-problem-name` (use hyphens)
-- Use lowercase with hyphens
-
-### Code Format
-```cpp
-// Use consistent indentation (4 spaces)
-class ParkingLot {
-private:
-    int capacity;
-    
-public:
-    ParkingLot(int cap) : capacity(cap) {}
-    
-    void parkVehicle() {
-        // Implementation
-    }
-};
-```
-
-## ✅ Pull Request Checklist
-
-Before submitting your PR, ensure:
-
-- [ ] Code compiles without errors
-- [ ] Code follows C++ standards and style guide
-- [ ] Added meaningful comments
-- [ ] Tested with multiple scenarios
-- [ ] Updated documentation if needed
-- [ ] PR title follows format: `Solution: [Problem] by [Name]` or `Problem: [New Problem Name]`
-- [ ] PR description explains approach and design decisions
-- [ ] No merge conflicts with main branch
-
-## 🔍 Review Process
-
-1. **Automated Checks**: Basic compilation and format checks (if configured)
-2. **Peer Review**: Community members review your code
-3. **Maintainer Review**: Final review by maintainers
-4. **Feedback**: Address any requested changes
-5. **Merge**: Once approved, your PR will be merged!
-
-## 💡 Tips for Great Contributions
+Use descriptive branch names following these patterns:
 
 ### For Solutions
-- **Think before coding**: Plan your class structure
-- **Use design patterns**: Don't just solve it, solve it well
-- **Write clean code**: Others will learn from your solution
-- **Add comments**: Explain your reasoning
-- **Test thoroughly**: Include edge cases
+```
+solution/<question-name>-<your-id>
+```
+Examples:
+- `solution/singleton-logger-john123`
+- `solution/lru-cache-alice456`
 
-### For Problems
-- **Be clear**: Problem statement should be unambiguous
-- **Provide examples**: Help others understand requirements
-- **Set difficulty appropriately**: Easy/Medium/Hard
-- **Include hints**: Suggest patterns without giving away the solution
+### For New Questions
+```
+question/<question-name>
+```
+Example:
+- `question/message-queue-system`
 
-## 🐛 Reporting Issues
+### For Bug Fixes
+```
+fix/<issue-description>
+```
+Example:
+- `fix/parking-lot-null-pointer`
 
-Found a bug or have a suggestion?
+### For Documentation
+```
+docs/<description>
+```
+Example:
+- `docs/update-contributing-guide`
 
-1. Check if issue already exists
-2. Create a new issue with template
-3. Provide details:
-   - What you expected
-   - What actually happened
-   - Steps to reproduce
-   - Your environment (OS, compiler, etc.)
+## Solution Submission Process
 
-## 📞 Getting Help
+### Step 1: Choose a Question
+Browse the `questions/` directory and select a question you want to solve.
 
-- **GitHub Discussions**: Ask questions
-- **Issues**: Report problems
-- **Discord/Slack**: Join community chat (coming soon)
+### Step 2: Create Your Branch
+```bash
+git checkout -b solution/<question-name>-<your-id>
+```
 
-## 🎯 Recognition
+### Step 3: Implement Your Solution
 
-Contributors will be recognized in:
-- README acknowledgments
-- Hall of Fame (coming soon)
-- Contributor badges
+#### For Java Solutions
+Create your solution file in:
+```
+solutions/java/<category>/<question-name>/<your-id>/
+```
 
-## 📜 Code of Conduct
+File structure:
+```
+<your-id>/
+├── Solution.java           # Main solution file
+├── README.md              # Your approach explanation
+└── (additional classes)   # If needed
+```
 
-- Be respectful and inclusive
+#### For C++ Solutions
+Create your solution file in:
+```
+solutions/cpp/<category>/<question-name>/<your-id>/
+```
+
+File structure:
+```
+<your-id>/
+├── solution.cpp           # Main solution file
+├── solution.h             # Header file (if needed)
+├── README.md             # Your approach explanation
+└── Makefile              # Build instructions (optional)
+```
+
+### Step 4: Document Your Solution
+Create a README.md in your solution directory with:
+
+```markdown
+# Solution by [Your ID]
+
+## Approach
+Brief description of your design approach and key decisions.
+
+## Design Patterns Used
+List any design patterns you implemented.
+
+## Time Complexity
+Analysis of time complexity for key operations.
+
+## Space Complexity
+Analysis of space complexity.
+
+## Trade-offs
+Discuss any trade-offs you made in your design.
+
+## How to Run
+
+### Java
+[Compilation and execution instructions]
+
+### C++
+[Compilation and execution instructions]
+```
+
+### Step 5: Test Your Solution
+Ensure your code:
+- Compiles without errors
+- Runs successfully
+- Handles edge cases
+- Follows the question requirements
+
+### Step 6: Commit Your Changes
+```bash
+git add .
+git commit -m "Add solution for <question-name> by <your-id>"
+```
+
+### Step 7: Push to Your Fork
+```bash
+git push origin solution/<question-name>-<your-id>
+```
+
+### Step 8: Create Pull Request
+1. Go to your fork on GitHub
+2. Click "New Pull Request"
+3. Select your branch
+4. Fill in the PR template with required information
+5. Submit the pull request
+
+## Code Standards
+
+### Java Standards
+
+1. **Naming Conventions**
+   - Classes: PascalCase (e.g., `UserManager`)
+   - Methods: camelCase (e.g., `getUserById`)
+   - Constants: UPPER_SNAKE_CASE (e.g., `MAX_SIZE`)
+
+2. **Code Style**
+   - Use 4 spaces for indentation
+   - Maximum line length: 120 characters
+   - Always use braces for control structures
+
+3. **Documentation**
+   - Add Javadoc comments for public classes and methods
+   - Include inline comments for complex logic
+
+4. **Best Practices**
+   - Follow SOLID principles
+   - Use appropriate design patterns
+   - Handle exceptions properly
+   - Avoid code duplication
+
+### C++ Standards
+
+1. **Naming Conventions**
+   - Classes: PascalCase (e.g., `UserManager`)
+   - Functions: camelCase (e.g., `getUserById`)
+   - Constants: UPPER_SNAKE_CASE (e.g., `MAX_SIZE`)
+   - Private members: prefix with underscore (e.g., `_data`)
+
+2. **Code Style**
+   - Use 4 spaces for indentation
+   - Maximum line length: 120 characters
+   - Use header guards or `#pragma once`
+
+3. **Memory Management**
+   - Use smart pointers (unique_ptr, shared_ptr)
+   - Follow RAII principles
+   - Avoid raw pointers when possible
+
+4. **Documentation**
+   - Add Doxygen-style comments for public interfaces
+   - Include inline comments for complex logic
+
+5. **Best Practices**
+   - Use C++11 or later features
+   - Prefer const correctness
+   - Use references over pointers when appropriate
+   - Implement rule of three/five when needed
+
+## Commit Message Guidelines
+
+Write clear, concise commit messages:
+
+### Format
+```
+<type>: <subject>
+
+<body (optional)>
+```
+
+### Types
+- `feat`: New feature or solution
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `refactor`: Code refactoring
+- `test`: Adding or updating tests
+- `style`: Code style changes (formatting)
+
+### Examples
+```
+feat: Add singleton logger solution by john123
+
+Implemented thread-safe singleton pattern with lazy initialization.
+Used double-checked locking for performance optimization.
+```
+
+```
+fix: Correct null pointer issue in parking lot solution
+
+Added null checks before accessing vehicle objects.
+```
+
+## Pull Request Process
+
+### PR Title Format
+```
+[Category] Question Name - Your ID
+```
+Example:
+```
+[Design Patterns] Singleton Logger - john123
+```
+
+### PR Description Template
+```markdown
+## Solution Details
+- **Question**: [Question Name]
+- **Category**: [Category Name]
+- **Language**: [Java/C++/Both]
+- **Contributor ID**: [Your ID]
+
+## Implementation Summary
+Brief description of your implementation approach.
+
+## Design Patterns Used
+List the design patterns you implemented.
+
+## Testing
+Describe how you tested your solution.
+
+## Checklist
+- [ ] Code compiles without errors
+- [ ] Code follows style guidelines
+- [ ] Documentation is complete
+- [ ] Solution meets all requirements
+- [ ] README.md is included
+```
+
+## Code Review
+
+### Review Process
+1. Maintainers will review your PR within 3-5 business days
+2. Address any requested changes
+3. Once approved, your PR will be merged
+
+### Review Criteria
+- Code correctness and completeness
+- Adherence to coding standards
+- Quality of documentation
+- Design pattern implementation
+- Code efficiency and readability
+
+### Responding to Feedback
+- Be open to constructive criticism
+- Make requested changes promptly
+- Ask questions if feedback is unclear
+- Update your PR with improvements
+
+## Questions and Support
+
+If you have questions:
+1. Check existing issues and discussions
+2. Create a new issue with the `question` label
+3. Provide clear context and examples
+
+## Code of Conduct
+
+- Be respectful and professional
 - Provide constructive feedback
 - Help others learn and grow
-- Follow GitHub's community guidelines
+- Celebrate diverse approaches to problem-solving
 
----
-
-Thank you for contributing to the LLD Practice Repository! Your contributions help everyone learn and improve. 🚀
+Thank you for contributing to this learning community!

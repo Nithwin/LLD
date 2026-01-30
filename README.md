@@ -1,188 +1,159 @@
-# Low Level Design (LLD) Practice Repository 🎯
+# Low-Level Design System Design Questions
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+A comprehensive collection of 50 Low-Level Design (LLD) system design questions with implementations in both Java and C++. This repository is designed for collaborative learning and contribution.
 
-Welcome to the **Low Level Design Practice Repository**! This is an open-source collection of LLD problems designed to help developers master object-oriented design principles, design patterns, and system modeling.
+## Overview
 
-## 📚 Table of Contents
+This repository contains carefully curated LLD questions organized into five categories, each focusing on different aspects of system design and software engineering principles.
 
-- [About](#about)
-- [Problem List](#problem-list)
-- [Getting Started](#getting-started)
-- [How to Contribute](#how-to-contribute)
-- [Workflow](#workflow)
-- [Code Structure](#code-structure)
-- [Learning Resources](#learning-resources)
-- [Community](#community)
+## Question Categories
 
-## 🎯 About
+### 1. Design Patterns (10 Questions)
+Object-oriented design patterns and their practical implementations.
 
-This repository contains a curated list of Low Level Design problems that focus on:
-- **Object-Oriented Programming (OOP)** principles
-- **Design Patterns** (Creational, Structural, Behavioral)
-- **SOLID principles**
-- **System Modeling** and class diagram design
-- **Real-world problem solving**
+### 2. Data Structures (10 Questions)
+Custom data structure implementations with specific requirements and constraints.
 
-Each problem is designed to simulate real-world scenarios and help you think like a software architect.
+### 3. System Components (10 Questions)
+Complete system designs for common real-world components.
 
-## 📋 Problem List
+### 4. Real-world Applications (10 Questions)
+End-to-end application designs mimicking production systems.
 
-| # | Problem | Difficulty | Concepts | Status |
-|---|---------|------------|----------|--------|
-| 1 | [Toll Gate System](./problems/01-toll-gate-system/) | Medium | Inheritance, Polymorphism | ✅ Sample Available |
-| 2 | [Parking Lot System](./problems/02-parking-lot/) | Medium | Factory Pattern, Strategy | 📝 Open |
-| 3 | [Library Management System](./problems/03-library-management/) | Easy | OOP Basics, Encapsulation | 📝 Open |
-| 4 | [Hotel Booking System](./problems/04-hotel-booking/) | Medium | Observer Pattern, State | 📝 Open |
-| 5 | [Elevator System](./problems/05-elevator-system/) | Hard | State Machine, Queue | 📝 Open |
-| 6 | [ATM Machine](./problems/06-atm-machine/) | Medium | State Pattern, Chain of Responsibility | 📝 Open |
-| 7 | [Vending Machine](./problems/07-vending-machine/) | Medium | State Pattern | 📝 Open |
-| 8 | [Chess Game](./problems/08-chess-game/) | Hard | Strategy, Command Pattern | 📝 Open |
-| 9 | [Online Shopping System](./problems/09-online-shopping/) | Hard | Multiple Patterns | 📝 Open |
-| 10 | [Ride Sharing System](./problems/10-ride-sharing/) | Hard | Strategy, Observer | 📝 Open |
+### 5. Concurrency (10 Questions)
+Thread-safe implementations and concurrent programming challenges.
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- C++ compiler (GCC 7+ or Clang 6+)
-- Git
-- Code editor (VS Code, CLion, etc.)
-
-### Setup
-
-1. **Fork this repository**
-   ```bash
-   # Click the "Fork" button at the top of this repository
-   ```
-
-2. **Clone your fork**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/LLD.git
-   cd LLD
-   ```
-
-3. **Add upstream remote**
-   ```bash
-   git remote add upstream https://github.com/ORIGINAL_OWNER/LLD.git
-   ```
-
-4. **Choose a problem**
-   - Browse the [problem list](#problem-list)
-   - Select a problem you want to solve
-   - Check the problem's README for requirements
-
-## 🤝 How to Contribute
-
-We welcome contributions! Here's how you can contribute:
-
-1. **Solve a Problem** - Pick an open problem and implement your solution
-2. **Add a New Problem** - Propose and add new LLD problems
-3. **Improve Documentation** - Enhance problem statements or guides
-4. **Review Solutions** - Help review others' pull requests
-
-For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md)
-
-## 🔄 Workflow
-
-### For Problem Solvers
-
-1. **Create a branch for your solution**
-   ```bash
-   git checkout -b solution/problem-name-yourname
-   # Example: git checkout -b solution/parking-lot-john
-   ```
-
-2. **Implement your solution**
-   - Navigate to the problem folder: `problems/XX-problem-name/`
-   - Create your solution file: `solution_yourname.cpp`
-   - Follow the problem requirements
-   - Add comments explaining your design decisions
-
-3. **Test your solution**
-   ```bash
-   g++ -std=c++17 solution_yourname.cpp -o solution
-   ./solution
-   ```
-
-4. **Commit and push**
-   ```bash
-   git add .
-   git commit -m "Add solution for [Problem Name] by [Your Name]"
-   git push origin solution/problem-name-yourname
-   ```
-
-5. **Create a Pull Request**
-   - Go to your fork on GitHub
-   - Click "New Pull Request"
-   - Fill in the PR template
-   - Wait for review
-
-### For Problem Creators
-
-1. **Create a branch**
-   ```bash
-   git checkout -b problem/new-problem-name
-   ```
-
-2. **Add problem folder**
-   - Create folder: `problems/XX-problem-name/`
-   - Add `README.md` with problem statement
-   - Add `sample_solution.cpp` (optional)
-   - Add test cases if applicable
-
-3. **Submit PR** following the same process above
-
-## 📁 Code Structure
+## Repository Structure
 
 ```
 LLD/
-├── problems/
-│   ├── 01-toll-gate-system/
-│   │   ├── README.md              # Problem statement
-│   │   ├── sample_solution.cpp    # Reference solution
-│   │   └── solutions/             # Community solutions
-│   │       ├── solution_user1.cpp
-│   │       └── solution_user2.cpp
-│   ├── 02-parking-lot/
-│   │   └── README.md
-│   └── ...
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   └── PULL_REQUEST_TEMPLATE.md
-├── CONTRIBUTING.md
-├── LICENSE
-└── README.md
+├── questions/                         # Question statements
+│   ├── design-patterns/
+│   ├── data-structures/
+│   ├── system-components/
+│   ├── real-world-applications/
+│   └── concurrency/
+├── solutions/                         # Solutions by language
+│   ├── java/
+│   └── cpp/
+└── templates/                         # Contribution templates
 ```
 
-## 📖 Learning Resources
+## Getting Started
+
+### For Learners
+
+1. Browse questions in the `questions/` directory
+2. Choose a question based on your interest and skill level
+3. Attempt to solve it independently
+4. Review existing solutions in `solutions/java/` or `solutions/cpp/`
+5. Compare your approach with community solutions
+
+### For Contributors
+
+1. Fork this repository
+2. Read [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines
+3. Create a branch: `solution/<question-name>-<your-id>`
+4. Implement your solution following the templates
+5. Submit a pull request
+
+## Question Index
 
 ### Design Patterns
-- [Refactoring Guru - Design Patterns](https://refactoring.guru/design-patterns)
-- [Head First Design Patterns](https://www.oreilly.com/library/view/head-first-design/0596007124/)
+1. Singleton Logger System
+2. Factory Pattern for Payment Processing
+3. Observer Pattern for Stock Market
+4. Strategy Pattern for Sorting Algorithms
+5. Decorator Pattern for Coffee Shop
+6. Command Pattern for Remote Control
+7. Adapter Pattern for Media Player
+8. Builder Pattern for Meal Ordering
+9. Prototype Pattern for Document Cloning
+10. Chain of Responsibility for Support Tickets
 
-### SOLID Principles
-- [SOLID Principles Explained](https://www.digitalocean.com/community/conceptual_articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)
+### Data Structures
+11. LRU Cache Implementation
+12. Min Stack Design
+13. Thread-Safe Queue
+14. Trie for Autocomplete
+15. Graph with Add/Remove Operations
+16. Priority Queue with Custom Comparator
+17. Circular Buffer Implementation
+18. Skip List Design
+19. Bloom Filter Implementation
+20. Disjoint Set Union (DSU)
 
-### System Design
-- [System Design Primer](https://github.com/donnemartin/system-design-primer)
+### System Components
+21. Parking Lot System
+22. Library Management System
+23. Elevator System
+24. Vending Machine
+25. ATM Machine
+26. Traffic Light Controller
+27. Booking System (Movie/Hotel)
+28. File System Design
+29. URL Shortener
+30. Rate Limiter
 
-## 🌟 Community
+### Real-world Applications
+31. Online Shopping Cart
+32. Social Media Feed
+33. Chat Application
+34. Notification Service
+35. Search Engine Indexer
+36. Ride Sharing System
+37. Food Delivery System
+38. Online Auction System
+39. Collaborative Document Editor
+40. Music Streaming Service
 
-- **Discussions**: Use GitHub Discussions to ask questions
-- **Issues**: Report bugs or suggest new problems via Issues
-- **Discord/Slack**: [Join our community](#) (coming soon)
+### Concurrency
+41. Thread Pool Implementation
+42. Producer-Consumer Problem
+43. Reader-Writer Lock
+44. Dining Philosophers Solution
+45. Concurrent HashMap
+46. Semaphore Implementation
+47. Barrier Synchronization
+48. Future and Promise Pattern
+49. Lock-Free Stack
+50. Thread-Safe Singleton
 
-## 📜 License
+## Contribution Guidelines
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+We welcome contributions from developers of all skill levels. Please ensure:
 
-## 🙏 Acknowledgments
+- Code follows language-specific best practices
+- Solutions include proper documentation
+- All code is tested and functional
+- Commit messages are clear and descriptive
 
-- Thanks to all contributors who help make this repository better!
-- Problem ideas inspired by real-world systems and common interview questions
+See [CONTRIBUTING.md](CONTRIBUTING.md) for complete guidelines.
 
----
+## Code Standards
 
-**Happy Coding! 🚀** If you find this repository helpful, please ⭐ star it to show your support!
+### Java
+- Follow Java naming conventions
+- Use Java 8+ features where appropriate
+- Include proper exception handling
+- Add unit tests where applicable
+
+### C++
+- Follow C++11 or later standards
+- Use RAII principles
+- Implement proper memory management
+- Include header guards
+
+## Learning Resources
+
+- Design Patterns: Gang of Four (GoF) Design Patterns
+- System Design: System Design Interview by Alex Xu
+- Concurrency: Java Concurrency in Practice, C++ Concurrency in Action
+
+## License
+
+This repository is open source and available for educational purposes.
+
+## Acknowledgments
+
+Thank you to all contributors who help make this repository a valuable learning resource.
