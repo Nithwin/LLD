@@ -80,6 +80,38 @@ player.play("avi", "clip.avi");
 - Clean abstraction
 - Extensibility
 
+## Sample Tests
+
+### Sample Test 1: Playing Different Formats
+```java
+// Input
+MediaPlayer player = new AudioPlayer();
+
+player.play("mp3", "song.mp3");
+player.play("mp4", "video.mp4");
+player.play("vlc", "movie.vlc");
+
+// Output
+Playing MP3 file: song.mp3
+Using adapter for MP4 format
+Playing MP4 file: video.mp4
+Using adapter for VLC format
+Playing VLC file: movie.vlc
+```
+
+### Sample Test 2: Unsupported Format
+```java
+// Input
+MediaPlayer player = new AudioPlayer();
+player.play("avi", "clip.avi");
+player.play("mkv", "video.mkv");
+
+// Output
+Using adapter for AVI format
+Playing AVI file: clip.avi
+Error: Unsupported format - mkv
+```
+
 ## Additional Notes
 
 Consider how to handle format detection automatically. Think about supporting streaming vs local files.

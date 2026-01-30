@@ -83,6 +83,34 @@ Task highest = queue.extractMax(); // Returns "High priority"
 - Heap property maintenance
 - Efficient priority updates
 
+
+## Sample Tests
+
+### Sample Test 1: Priority Extraction
+```java
+// Input
+PriorityQueue<Task> pq = new PriorityQueue<>((a,b) -> b.priority - a.priority);
+pq.insert(new Task("Low", 1));
+pq.insert(new Task("High", 10));
+pq.insert(new Task("Med", 5));
+System.out.println(pq.extractMax().name);
+
+// Output
+High
+```
+
+### Sample Test 2: Priority Update
+```java
+// Input
+Task task = new Task("Update", 3);
+pq.insert(task);
+pq.updatePriority(task, 15);
+System.out.println(pq.peek().name);
+
+// Output
+Update
+```
+
 ## Additional Notes
 
 Consider using a binary heap or Fibonacci heap. Think about how to efficiently locate elements for priority updates.

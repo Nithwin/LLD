@@ -80,6 +80,42 @@ appleStock.setPrice(155.00); // Both investors notified
 - Proper subscription management
 - Error handling for notification failures
 
+## Sample Tests
+
+### Sample Test 1: Multiple Investors Notification
+```java
+// Input
+Stock appleStock = new Stock("AAPL", 150.00);
+Investor inv1 = new EmailInvestor("john@email.com");
+Investor inv2 = new SMSInvestor("+1234567890");
+Investor inv3 = new PushInvestor("user123");
+
+appleStock.subscribe(inv1);
+appleStock.subscribe(inv2);
+appleStock.subscribe(inv3);
+appleStock.setPrice(155.00);
+
+// Output
+Email sent to john@email.com: AAPL price changed from $150.00 to $155.00
+SMS sent to +1234567890: AAPL price changed from $150.00 to $155.00
+Push notification to user123: AAPL price changed from $150.00 to $155.00
+```
+
+### Sample Test 2: Unsubscribe Behavior
+```java
+// Input
+Stock googleStock = new Stock("GOOGL", 2800.00);
+Investor inv1 = new EmailInvestor("alice@email.com");
+googleStock.subscribe(inv1);
+googleStock.setPrice(2850.00);  // Notification sent
+googleStock.unsubscribe(inv1);
+googleStock.setPrice(2900.00);  // No notification
+
+// Output
+Email sent to alice@email.com: GOOGL price changed from $2800.00 to $2850.00
+(No notification for second price change)
+```
+
 ## Additional Notes
 
 Consider implementing a push vs pull model for notifications. Think about how to handle notification ordering and priority.

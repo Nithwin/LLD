@@ -78,6 +78,39 @@ cache.get(2);        // Returns null (evicted)
 - Memory efficiency
 - Edge case handling
 
+## Sample Tests
+
+### Sample Test 1: Basic LRU Eviction
+```java
+// Input
+LRUCache cache = new LRUCache(3);
+cache.put(1, "A");
+cache.put(2, "B");
+cache.put(3, "C");
+System.out.println(cache.get(1));  // Access 1
+cache.put(4, "D");                  // Evicts 2 (least recently used)
+System.out.println(cache.get(2));
+
+// Output
+A
+null  // 2 was evicted
+Cache state: [4:D, 1:A, 3:C]
+```
+
+### Sample Test 2: Update Existing Key
+```java
+// Input
+LRUCache cache = new LRUCache(2);
+cache.put(1, "One");
+cache.put(2, "Two");
+cache.put(1, "Updated One");  // Update existing
+cache.put(3, "Three");         // Evicts 2
+
+// Output
+Cache after update: [1:Updated One, 2:Two]
+Cache after adding 3: [3:Three, 1:Updated One]
+```
+
 ## Additional Notes
 
 Consider using a combination of HashMap and Doubly Linked List. Think about how to maintain both fast lookup and ordered access.

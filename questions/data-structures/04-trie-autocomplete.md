@@ -79,6 +79,37 @@ trie.findWordsWithPrefix("app");       // Returns ["app", "apple", "application"
 - Delete operation correctness
 - Handling of edge cases
 
+
+## Sample Tests
+
+### Sample Test 1: Autocomplete Suggestions
+```java
+// Input
+Trie trie = new Trie();
+trie.insert("apple");
+trie.insert("app");
+trie.insert("application");
+List<String> suggestions = trie.findWordsWithPrefix("app");
+
+// Output
+[app, apple, application]
+```
+
+### Sample Test 2: Word Deletion
+```java
+// Input
+trie.insert("cat");
+trie.insert("car");
+System.out.println(trie.search("car"));
+trie.delete("car");
+System.out.println(trie.search("car"));
+
+// Output
+true
+false
+```
+
 ## Additional Notes
 
 Consider optimizing for space using compressed tries. Think about ranking suggestions by frequency or relevance.
+

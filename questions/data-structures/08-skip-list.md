@@ -82,6 +82,33 @@ List<Integer> range = skipList.rangeQuery(3, 9); // [3, 7, 9]
 - Range query efficiency
 - Memory management
 
+
+## Sample Tests
+
+### Sample Test 1: Sorted Insertion
+```java
+// Input
+SkipList<Integer> sl = new SkipList<>();
+sl.insert(3); sl.insert(6); sl.insert(7); sl.insert(9);
+System.out.println(sl.search(6));
+sl.delete(6);
+System.out.println(sl.search(6));
+
+// Output
+true
+false
+```
+
+### Sample Test 2: Range Query
+```java
+// Input
+List<Integer> range = sl.rangeQuery(3, 9);
+System.out.println(range);
+
+// Output
+[3, 7, 9]
+```
+
 ## Additional Notes
 
 Consider the trade-off between levels and performance. Think about deterministic vs probabilistic level assignment.

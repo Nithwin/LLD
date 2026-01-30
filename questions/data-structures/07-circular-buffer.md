@@ -82,6 +82,34 @@ buffer.read(); // Returns 4
 - Edge case handling
 - Memory efficiency
 
+
+## Sample Tests
+
+### Sample Test 1: Overwrite Behavior
+```java
+// Input
+CircularBuffer<Integer> buf = new CircularBuffer<>(3);
+buf.write(1); buf.write(2); buf.write(3);
+buf.write(4);  // Overwrites 1
+System.out.println(buf.read());
+
+// Output
+2
+```
+
+### Sample Test 2: Full/Empty States
+```java
+// Input
+CircularBuffer<String> buf = new CircularBuffer<>(2);
+System.out.println(buf.isEmpty());
+buf.write("A"); buf.write("B");
+System.out.println(buf.isFull());
+
+// Output
+true
+true
+```
+
 ## Additional Notes
 
 Consider using modulo arithmetic for pointer wrapping. Think about blocking vs non-blocking variants.

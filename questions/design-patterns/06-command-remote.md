@@ -87,6 +87,53 @@ remote.undo(); // TV turns off
 - Clean separation of concerns
 - Extensibility for new devices
 
+## Sample Tests
+
+### Sample Test 1: Command Execution and Undo
+```java
+// Input
+RemoteControl remote = new RemoteControl();
+TV tv = new TV();
+Light light = new Light();
+
+Command tvOn = new TVOnCommand(tv);
+Command lightOn = new LightOnCommand(light);
+
+remote.setCommand(0, tvOn);
+remote.setCommand(1, lightOn);
+
+remote.pressButton(0);  // TV on
+remote.pressButton(1);  // Light on
+remote.undo();          // Light off
+
+// Output
+TV is now ON
+Light is now ON
+Undoing last command...
+Light is now OFF
+```
+
+### Sample Test 2: Macro Command
+```java
+// Input
+Command[] partyMode = {new LightOnCommand(light), new TVOnCommand(tv), new MusicOnCommand(music)};
+MacroCommand partyMacro = new MacroCommand(partyMode);
+
+remote.setCommand(5, partyMacro);
+remote.pressButton(5);
+remote.undo();
+
+// Output
+Executing macro command...
+Light is now ON
+TV is now ON
+Music System is now ON
+Undoing macro command...
+Music System is now OFF
+TV is now OFF
+Light is now OFF
+```
+
 ## Additional Notes
 
 Consider how to handle commands that cannot be undone. Think about persisting command history across sessions.

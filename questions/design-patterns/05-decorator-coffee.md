@@ -80,6 +80,38 @@ System.out.println(beverage.getCost()); // 5.50
 - Accurate cost calculation
 - Clean code organization
 
+## Sample Tests
+
+### Sample Test 1: Multiple Decorators
+```java
+// Input
+Beverage beverage = new Espresso(Size.MEDIUM);
+beverage = new Milk(beverage);
+beverage = new Sugar(beverage);
+beverage = new WhippedCream(beverage);
+
+System.out.println(beverage.getDescription());
+System.out.println("Total: $" + beverage.getCost());
+
+// Output
+Medium Espresso, Milk, Sugar, Whipped Cream
+Total: $5.50
+```
+
+### Sample Test 2: Size-Based Pricing
+```java
+// Input
+Beverage small = new Latte(Size.SMALL);
+small = new Caramel(small);
+
+Beverage large = new Latte(Size.LARGE);
+large = new Caramel(large);
+
+// Output
+Small Latte, Caramel - Cost: $4.00
+Large Latte, Caramel - Cost: $6.50
+```
+
 ## Additional Notes
 
 Consider how to handle add-on dependencies (e.g., some add-ons only work with certain beverages). Think about seasonal or limited-time add-ons.

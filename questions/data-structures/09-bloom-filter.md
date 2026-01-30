@@ -79,6 +79,35 @@ filter.mightContain("grape");   // might be false positive
 - Optimal parameter calculation
 - Space efficiency
 
+
+## Sample Tests
+
+### Sample Test 1: Membership Test
+```java
+// Input
+BloomFilter<String> bf = new BloomFilter<>(1000, 0.01);
+bf.add("apple"); bf.add("banana");
+System.out.println(bf.mightContain("apple"));
+System.out.println(bf.mightContain("orange"));
+
+// Output
+true
+false
+```
+
+### Sample Test 2: False Positive Rate
+```java
+// Input
+int falsePositives = 0;
+for (int i = 0; i < 1000; i++) {
+    if (bf.mightContain("item" + i)) falsePositives++;
+}
+System.out.println("FP rate: " + (falsePositives/1000.0));
+
+// Output
+FP rate: 0.009  // Within 1% limit
+```
+
 ## Additional Notes
 
 Consider using MurmurHash or other fast hash functions. Think about counting bloom filters for deletion support.

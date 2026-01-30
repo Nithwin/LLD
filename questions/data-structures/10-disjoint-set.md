@@ -81,6 +81,35 @@ ds.connected(1, 5);  // true (now in same set)
 - Near constant time operations
 - Proper handling of edge cases
 
+
+## Sample Tests
+
+### Sample Test 1: Union and Find
+```java
+// Input
+DisjointSet ds = new DisjointSet(10);
+ds.union(1, 2); ds.union(2, 3);
+System.out.println(ds.connected(1, 3));
+System.out.println(ds.connected(1, 4));
+
+// Output
+true
+false
+```
+
+### Sample Test 2: Path Compression
+```java
+// Input
+ds.union(4, 5); ds.union(5, 6);
+ds.union(3, 4);  // Connects two sets
+System.out.println(ds.connected(1, 6));
+System.out.println(ds.countSets());
+
+// Output
+true
+8  // Remaining disjoint sets
+```
+
 ## Additional Notes
 
 Consider applications in Kruskal's algorithm and dynamic connectivity. Think about weighted union-find variants.

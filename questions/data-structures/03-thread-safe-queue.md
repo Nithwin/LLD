@@ -83,6 +83,55 @@ new Thread(() -> {
 - Performance under concurrent load
 - Proper use of locks/semaphores
 
+## Sample Tests
+
+### Sample Test 1: Concurrent Enqueue/Dequeue
+```java
+// Input
+ThreadSafeQueue<Integer> queue = new ThreadSafeQueue<>(5);
+Thread producer = new Thread(() -> {
+    for (int i = 1; i <= 3; i++) {
+        queue.enqueue(i);
+        System.out.println("Produced: " + i);
+    }
+});
+Thread consumer = new Thread(() -> {
+    for (int i = 0; i < 3; i++) {
+        Integer val = queue.dequeue();
+        System.out.println("Consumed: " + val);
+    }
+});
+producer.start();
+consumer.start();
+
+// Output
+Produced: 1
+Consumed: 1
+Produced: 2
+Consumed: 2
+Produced: 3
+Consumed: 3
+```
+
+### Sample Test 2: Blocking on Empty Queue
+```java
+// Input
+ThreadSafeQueue<String> queue = new ThreadSafeQueue<>(3);
+Thread consumer = new Thread(() -> {
+    System.out.println("Waiting for item...");
+    String item = queue.dequeue();  // Blocks
+    System.out.println("Got: " + item);
+});
+consumer.start();
+Thread.sleep(2000);
+queue.enqueue("Hello");
+
+// Output
+Waiting for item...
+(2 second pause)
+Got: Hello
+```
+
 ## Additional Notes
 
 Consider using mutex/locks, condition variables, or semaphores. Think about bounded vs unbounded queue implementations.

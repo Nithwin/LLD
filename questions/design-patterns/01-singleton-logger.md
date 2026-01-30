@@ -74,6 +74,43 @@ logger.log(LogLevel.ERROR, "An error occurred");
 - Efficient file I/O handling
 - Comprehensive error handling
 
+## Sample Tests
+
+### Sample Test 1: Thread-Safe Singleton Instance
+```java
+// Input
+Thread t1 = new Thread(() -> {
+    Logger logger1 = Logger.getInstance();
+    System.out.println("Thread 1: " + logger1.hashCode());
+});
+
+Thread t2 = new Thread(() -> {
+    Logger logger2 = Logger.getInstance();
+    System.out.println("Thread 2: " + logger2.hashCode());
+});
+
+t1.start();
+t2.start();
+
+// Output
+Thread 1: 123456789
+Thread 2: 123456789  // Same instance hash code
+```
+
+### Sample Test 2: Log Level Filtering
+```java
+// Input
+Logger logger = Logger.getInstance();
+logger.setLogLevel(LogLevel.INFO);
+logger.log(LogLevel.DEBUG, "Debug message");
+logger.log(LogLevel.INFO, "Info message");
+logger.log(LogLevel.ERROR, "Error message");
+
+// Output (only INFO and above are logged)
+[2026-01-30 18:20:00] INFO: Info message
+[2026-01-30 18:20:00] ERROR: Error message
+```
+
 ## Additional Notes
 
 Consider using double-checked locking or other thread-safe initialization techniques. Think about how to handle log file rotation when size limits are reached.

@@ -86,6 +86,46 @@ meal.printBill();
 - Validation logic
 - Clean separation of construction from representation
 
+## Sample Tests
+
+### Sample Test 1: Complete Meal Build
+```java
+// Input
+MealBuilder builder = new VegMealBuilder();
+Meal meal = builder
+    .setMainCourse(new Item("Veg Burger", 5.99))
+    .addSide(new Item("Fries", 2.99))
+    .addSide(new Item("Salad", 3.49))
+    .setDrink(new Item("Coke", 1.99))
+    .setDessert(new Item("Ice Cream", 2.49))
+    .build();
+
+meal.printBill();
+
+// Output
+=== MEAL BILL ===
+Main: Veg Burger - $5.99
+Sides: Fries - $2.99, Salad - $3.49
+Drink: Coke - $1.99
+Dessert: Ice Cream - $2.49
+Total: $16.95
+Calories: 1250
+```
+
+### Sample Test 2: Validation Error
+```java
+// Input
+MealBuilder builder = new VeganMealBuilder();
+Meal meal = builder
+    .setMainCourse(new Item("Vegan Burger", 6.99))
+    .setDrink(new Item("Milk", 1.99))  // Not vegan!
+    .build();
+
+// Output
+Error: Milk is not compatible with Vegan meal type
+Build failed: Please use vegan-compatible items only
+```
+
 ## Additional Notes
 
 Consider how to handle special dietary requirements. Think about meal customization and ingredient substitutions.

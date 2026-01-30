@@ -86,6 +86,31 @@ List<String> bfsOrder = graph.bfs("A");
 - Traversal algorithm correctness
 - Memory efficiency
 
+
+## Sample Tests
+
+### Sample Test 1: BFS Traversal
+```java
+// Input
+Graph<String> graph = new UndirectedGraph<>();
+graph.addVertex("A"); graph.addVertex("B"); graph.addVertex("C");
+graph.addEdge("A", "B", 1); graph.addEdge("B", "C", 1);
+List<String> bfs = graph.bfs("A");
+
+// Output
+[A, B, C]
+```
+
+### Sample Test 2: Vertex Removal
+```java
+// Input
+graph.removeVertex("B");
+System.out.println(graph.getNeighbors("A"));
+
+// Output
+[]  // B and its edges removed
+```
+
 ## Additional Notes
 
 Consider using adjacency list for sparse graphs. Think about how to handle self-loops and parallel edges.

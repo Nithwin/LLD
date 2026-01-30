@@ -83,6 +83,51 @@ l1.handleTicket(ticket);
 - Audit trail implementation
 - Error handling
 
+## Sample Tests
+
+### Sample Test 1: Ticket Escalation Chain
+```java
+// Input
+SupportHandler l1 = new L1Support();
+SupportHandler l2 = new L2Support();
+SupportHandler l3 = new L3Support();
+SupportHandler manager = new ManagerSupport();
+
+l1.setNextHandler(l2);
+l2.setNextHandler(l3);
+l3.setNextHandler(manager);
+
+Ticket ticket1 = new Ticket("Password reset", Priority.LOW, TicketType.GENERAL);
+Ticket ticket2 = new Ticket("Database crash", Priority.HIGH, TicketType.TECHNICAL);
+
+l1.handleTicket(ticket1);
+l1.handleTicket(ticket2);
+
+// Output
+[L1 Support] Handling ticket: Password reset
+Ticket #001 resolved by L1 Support
+
+[L1 Support] Escalating to L2...
+[L2 Support] Escalating to L3...
+[L3 Support] Handling ticket: Database crash
+Ticket #002 resolved by L3 Support
+```
+
+### Sample Test 2: Manager Escalation
+```java
+// Input
+Ticket criticalTicket = new Ticket("System outage", Priority.CRITICAL, TicketType.TECHNICAL);
+l1.handleTicket(criticalTicket);
+
+// Output
+[L1 Support] Escalating to L2...
+[L2 Support] Escalating to L3...
+[L3 Support] Escalating to Manager...
+[Manager Support] Handling critical ticket: System outage
+Ticket #003 resolved by Manager
+Incident report generated
+```
+
 ## Additional Notes
 
 Consider how to handle tickets that need multiple levels to collaborate. Think about SLA tracking and notifications.

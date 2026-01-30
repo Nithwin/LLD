@@ -84,6 +84,38 @@ if (transaction.isSuccessful()) {
 - Clean abstraction between payment methods
 - Error handling and edge cases
 
+## Sample Tests
+
+### Sample Test 1: Credit Card Payment
+```java
+// Input
+PaymentFactory factory = new PaymentFactory();
+PaymentProcessor processor = factory.createProcessor(PaymentMethod.CREDIT_CARD);
+PaymentDetails details = new PaymentDetails("4532-1234-5678-9010", "12/25", "123");
+Transaction txn = processor.processPayment(100.00, details);
+
+// Output
+Transaction ID: TXN_20260130_001
+Status: SUCCESS
+Amount: $100.00
+Payment Method: Credit Card
+Card: ****9010
+```
+
+### Sample Test 2: Invalid Payment Details
+```java
+// Input
+PaymentProcessor processor = factory.createProcessor(PaymentMethod.PAYPAL);
+PaymentDetails details = new PaymentDetails("invalid-email", null, null);
+Transaction txn = processor.processPayment(50.00, details);
+
+// Output
+Transaction ID: TXN_20260130_002
+Status: FAILED
+Error: Invalid PayPal email format
+Amount: $50.00
+```
+
 ## Additional Notes
 
 Consider how to handle payment gateway integration, transaction logging, and refund processing. Think about security implications of storing payment details.

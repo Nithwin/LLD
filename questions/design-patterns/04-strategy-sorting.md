@@ -79,6 +79,41 @@ sorter.sort(data); // Uses Merge Sort
 - Performance tracking implementation
 - Extensibility for new algorithms
 
+## Sample Tests
+
+### Sample Test 1: Different Sorting Strategies
+```java
+// Input
+Sorter sorter = new Sorter();
+int[] data = {64, 34, 25, 12, 22, 11, 90};
+
+sorter.setStrategy(new QuickSortStrategy());
+int[] result1 = sorter.sort(data.clone());
+
+sorter.setStrategy(new MergeSortStrategy());
+int[] result2 = sorter.sort(data.clone());
+
+// Output
+QuickSort result: [11, 12, 22, 25, 34, 64, 90]
+QuickSort time: 0.5ms
+MergeSort result: [11, 12, 22, 25, 34, 64, 90]
+MergeSort time: 0.7ms
+```
+
+### Sample Test 2: Custom Comparator
+```java
+// Input
+Sorter sorter = new Sorter();
+String[] words = {"apple", "pie", "banana", "cat"};
+
+sorter.setStrategy(new QuickSortStrategy());
+Comparator<String> lengthComparator = (a, b) -> a.length() - b.length();
+String[] result = sorter.sortWithComparator(words, lengthComparator);
+
+// Output
+Sorted by length: ["pie", "cat", "apple", "banana"]
+```
+
 ## Additional Notes
 
 Consider how to choose the optimal algorithm based on input size. Think about stability requirements for sorting.

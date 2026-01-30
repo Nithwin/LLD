@@ -80,6 +80,43 @@ stack.top();     // Returns 7
 - Edge case handling (empty stack)
 - Space complexity consideration
 
+## Sample Tests
+
+### Sample Test 1: Min Tracking
+```java
+// Input
+MinStack stack = new MinStack();
+stack.push(5);
+stack.push(3);
+stack.push(7);
+stack.push(1);
+System.out.println("Min: " + stack.getMin());
+stack.pop();
+System.out.println("Min after pop: " + stack.getMin());
+
+// Output
+Min: 1
+Min after pop: 3
+Top: 7
+```
+
+### Sample Test 2: Duplicate Minimums
+```java
+// Input
+MinStack stack = new MinStack();
+stack.push(2);
+stack.push(2);
+stack.push(3);
+stack.pop();
+System.out.println("Min: " + stack.getMin());
+stack.pop();
+System.out.println("Min: " + stack.getMin());
+
+// Output
+Min: 2
+Min: 2  // Still 2 after popping one duplicate
+```
+
 ## Additional Notes
 
 Consider using an auxiliary stack or storing min with each element. Think about trade-offs between time and space complexity.
