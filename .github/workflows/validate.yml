@@ -1,0 +1,109 @@
+name: Validate C++ Solutions
+
+on:
+  pull_request:
+    paths:
+      - '**.cpp'
+      - '**.h'
+      - '**.hpp'
+  push:
+    branches:
+      - main
+
+jobs:
+  compile-check:
+    name: Compile Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Set up GCC
+      uses: egor-tensin/setup-gcc@v1
+      with:
+        version: 11
+        
+    - name: Find and compile C++ files
+      run: |
+        echo "🔍 Finding C++ solution files..."
+        find problems -name "*.cpp" -type f > cpp_files.txt
+        
+        if [ ! -s cpp_files.txt ]; then
+          echo "ℹ️ No C++ files found to compile"
+          exit 0
+        fi
+        
+        echo "📝 Files to compile:"
+        cat cpp_files.txt
+        
+        echo ""
+        echo "🔨 Compiling files..."
+        
+        failed=0
+        while IFS= read -r file; do
+          echo "Compiling: $file"
+          if g++ -std=c++17 -Wall -Wextra -c "$file" -o "${file%.cpp}.o" 2>&1; then
+            echo "✅ $file compiled successfully"
+            rm -f "${file%.cpp}.o"
+          else
+            echo "❌ $file failed to compile"
+            failed=$((failed + 1))
+          fi
+          echo ""
+        done < cpp_files.txt
+        
+        if [ $failed -gt 0 ]; then
+          echo "❌ $failed file(s) failed to compile"
+          exit 1
+        else
+          echo "✅ All files compiled successfully!"
+        fi
+
+  style-check:
+    name: Code Style Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Check file naming convention
+      run: |
+        echo "🔍 Checking solution file naming..."
+        find problems -name "*.cpp" -type f | while read file; do
+          basename=$(basename "$file")
+          if [[ "$basename" =~ ^solution_[a-z]+\.cpp$ ]] || [[ "$basename" == "sample_solution.cpp" ]]; then
+            echo "✅ $basename follows naming convention"
+          else
+            echo "⚠️ $basename may not follow naming convention (solution_<name>.cpp)"
+          fi
+        done
+
+  pr-validation:
+    name: PR Validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Check PR title
+      run: |
+        PR_TITLE="${{ github.event.pull_request.title }}"
+        echo "PR Title: $PR_TITLE"
+        
+        if [[ "$PR_TITLE" =~ ^(Solution|Problem|Fix|Docs):.*$ ]]; then
+          echo "✅ PR title follows convention"
+        else
+          echo "⚠️ PR title should start with: Solution:, Problem:, Fix:, or Docs:"
+        fi
+        
+    - name: Validate PR has description
+      run: |
+        if [ -z "${{ github.event.pull_request.body }}" ]; then
+          echo "⚠️ PR description is empty. Please add details about your changes."
+        else
+          echo "✅ PR has description"
+        fi
